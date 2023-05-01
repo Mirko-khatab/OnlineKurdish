@@ -4,32 +4,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $username = $_POST["username"];
     $password = $_POST["password"]; 
     
-    $sql = "Select * from users where username='$username'"; 
+    $sql = "Select * from Tailorregester where username='$username' and accept=1"; 
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
-    if ($num == 1){
-        $row=mysqli_fetch_assoc($result);
-        $userType = $row['userType'];
-        if($userType == 1) {
-            $userId = $row['id'];
-            if (password_verify($password, $row['password'])){ 
-                session_start();
-                $_SESSION['adminloggedin'] = true;
-                $_SESSION['adminusername'] = $username;
-                $_SESSION['adminuserId'] = $userId;
-                header("location: /OnlineKC/admin/index.php?loginsuccess=true");
-                exit();
-            } 
-            else{
-                header("location: /OnlineKC/admin/login.php?loginsuccess=false");
-            }
+
+ 
+ 
+
+if($num ==1 ){
+    while($row = mysqli_fetch_assoc($result)){
+        
+        session_start();
+    
+        $_SESSION['tailorId'] = $row['id'];
+        $_SESSION['Tailorlogin'] = true;
+        $_SESSION['Tailorusername'] = $username;
+
+        header("location: /OnlineKC/Tailorpanel/index.php?loginsuccess=true");
+ 
+}
+        
+        
         }
-        else {
-            header("location: /OnlineKC/admin/login.php?loginsuccess=false");
+        else{
+            header("location: /OnlineKC/Tailorpanel/login.php?loginsuccess=false");
         }
-    } 
-    else{
-        header("location: /OnlineKC/admin/login.php?loginsuccess=false");
-    }
+
+ 
+   
 }    
 ?>

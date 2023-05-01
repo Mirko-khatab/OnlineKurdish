@@ -10,7 +10,7 @@
                   </button>
               </div>
               <div class="modal-body">
-                  <form action="partials/_handlerTailorsignup.php" method="post">
+                  <form action="partials/_handlerTailorsignup.php" method="POST" enctype="multipart/form-data">
                       <div class="form-group">
                           <b><label for="username">Username</label></b>
                           <input class="form-control" id="username" name="username"
@@ -28,6 +28,20 @@
                                   placeholder="Last name" required>
                           </div>
                       </div>
+
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault1" value="mail">
+                          <label class="form-check-label" for="flexRadioDefault1">
+                              mail
+                          </label>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault2"
+                              value="female" checked>
+                          <label class="form-check-label" for="flexRadioDefault2">
+                              female
+                          </label>
+                      </div>
                       <div class="form-group">
                           <b><label for="email">Email:</label></b>
                           <input type="email" class="form-control" id="email" name="email"
@@ -37,11 +51,16 @@
                           <b><label for="phone">Phone No:</label></b>
                           <div class="input-group mb-3">
                               <div class="input-group-prepend">
-                                  <span class="input-group-text" id="basic-addon">+91</span>
+                                  <span class="input-group-text" id="basic-addon">+964</span>
                               </div>
                               <input type="tel" class="form-control" id="phone" name="phone"
                                   placeholder="Enter Your Phone Number" required pattern="[0-9]{10}" maxlength="10">
                           </div>
+                      </div>
+
+                      <div class="text-left my-2">
+                          <b><label for="file">img:</label></b>
+                          <input class="form-control" name="file" id="file" type='file'>
                       </div>
                       <div class="text-left my-2">
                           <b><label for="facebook">Facebook:</label></b>
@@ -52,6 +71,7 @@
                           <b><label for="insta">instagram:</label></b>
                           <input class="form-control" id="insta" name="insta" placeholder="instagram url" type="Text">
                       </div>
+
                       <div class=" text-left my-2">
                           <b><label for="password">Password:</label></b>
                           <input class="form-control" id="password" name="password" placeholder="Enter Password"
@@ -62,10 +82,15 @@
                           <input class="form-control" id="cpassword" name="cpassword" placeholder="Renter Password"
                               type="password" required data-toggle="password" minlength="4" maxlength="21">
                       </div>
+                      <div class="form-group">
+                          <label for="exampleFormControlTextarea1">About</label>
+                          <textarea class="form-control" name="about" placeholder="About your selfe"
+                              id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+
                       <button type="submit" class="btn btn-success">Submit</button>
                   </form>
-                  <p class="mb-0 mt-1">Already have an account? <a href="#" data-dismiss="modal" data-toggle="modal"
-                          data-target="#loginModal">Login here</a>.</p>
+       
               </div>
           </div>
       </div>

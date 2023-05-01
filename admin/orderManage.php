@@ -24,6 +24,7 @@
                     <th>Order Date</th>
                     <th>Status</th>						
                     <th>Items</th>
+
                 </tr>
             </thead>
             <tbody>

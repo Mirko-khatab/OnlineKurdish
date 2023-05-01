@@ -19,8 +19,13 @@
                     eos eius
                     odit vel illo soluta, rerum quidem repellat recusandae tempore voluptatem alias itaque, consequatur
                     necessitatibus culpa.</p>
-                <button type="button" class="btn btn-info mx-2" data-toggle="modal"
-                    data-target="#TailorSignupmodule">TailorRegester</button>
+                <div>
+
+                    <button type="button" class="btn btn-info mx-2" data-toggle="modal"
+                        data-target="#TailorSignupmodule">TailorRegester</button>
+
+                    <a href="./Tailorpanel/" class="btn btn-info mx-2">TailorBoard</a>
+                </div>
 
             </div>
             <?php include 'partials/TailorSignupmodule.php';?>

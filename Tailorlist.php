@@ -32,29 +32,41 @@
                     aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
+
                 <div class="carousel-item active">
 
-
                     <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <?php
+
+$query = mysqli_query($conn, "SELECT * FROM `Tailorregester` where accept=1 Limit 3 ");
+//query to select only 3 rows from the bigenning of the table
+
+
+while($row = mysqli_fetch_assoc($query)){?>
                         <div class="col">
                             <div class="area1 bg-danger p-3 py-5"> </div>
                             <div class="area2 p- text-center px-3">
-                                <div class="image mr-3"> <img src="https://i.imgur.com/ZSkeqnd.jpg"
+                                <div class="image mr-3"> <img src="./Tailorpanel/uploads/<?php echo $row['file']; ?>"
                                         class="rounded-circle" width="100" />
-                                    <h4 class=" name mt-3 ">Anna Watson</h4>
-                                    <p class="information mt-3 text-justify">I'm doing this as a way to practice my
-                                        design
-                                        skills,explore different styles and have fun.I'm fully aware this challenge
-                                        doesn't pose
-                                        my
-                                        real problem to solve,That's why i'm looking for criticism and feedback ,not
-                                        just likes
+                                    <a href="./Tailorpage.php?tailorId=<?php echo $row['id'] ?>" >
+                                        <h4 class=" name mt-3 ">
+
+                                            <?php echo $row['username']; ?>
+                                        </h4>
+                                    </a>
+                                    <p class="information mt-3 text-justify">
+                                        <?php echo $row['about']; ?>
+
                                     </p>
                                     <div class="d-flex justify-content-center mt-5">
                                         <ul class="list-icons">
-                                            <li class="facebook"> <i class="fa fa-facebook"></i></li>
-                                            <li class="instagram"> <i class="fa fa-instagram"></i></li>
-                                            <li class="whatsapp"> <i class="fa fa-whatsapp"></i></li>
+                                            <a href="<?php echo $row['facebooklink']; ?>">
+                                                <li class="facebook"> <i class="fa fa-facebook"></i></li>
+                                            </a>
+                                            <a href="<?php echo $row['instalink']; ?>">
+                                                <li class="instagram"> <i class="fa fa-instagram"></i></li>
+                                            </a>
+
 
                                         </ul>
                                     </div>
@@ -62,62 +74,10 @@
 
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="area1 bg-warning p-3 py-5"> </div>
-                            <div class="area2 p- text-center px-3">
-                                <div class="image mr-3"> <img src="https://i.imgur.com/ZSkeqnd.jpg"
-                                        class="rounded-circle" width="100" />
-                                    <h4 class=" name mt-3 ">Anna Watson</h4>
-                                    <p class="information mt-3 text-justify">I'm doing this as a way to practice my
-                                        design
-                                        skills,explore different styles and have fun.I'm fully aware this challenge
-                                        doesn't pose
-                                        my
-                                        real problem to solve,That's why i'm looking for criticism and feedback ,not
-                                        just likes
-                                    </p>
-                                    <div class="d-flex justify-content-center mt-5">
-                                        <ul class="list-icons">
-                                            <li class="facebook"> <i class="fa fa-facebook"></i></li>
-                                            <li class="instagram"> <i class="fa fa-instagram"></i></li>
-                                            <li class="whatsapp"> <i class="fa fa-whatsapp"></i></li>
+                        <?php } ?>
 
-                                        </ul>
-                                    </div>
-                                </div>
 
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="area1 bg-primary p-3 py-5"> </div>
-                            <div class="area2 p- text-center px-3">
-                                <div class="image mr-3"> <img src="https://i.imgur.com/ZSkeqnd.jpg"
-                                        class="rounded-circle" width="100" />
-                                    <h4 class=" name mt-3 ">Anna Watson</h4>
-                                    <p class="information mt-3 text-justify">I'm doing this as a way to practice my
-                                        design
-                                        skills,explore different styles and have fun.I'm fully aware this challenge
-                                        doesn't pose
-                                        my
-                                        real problem to solve,That's why i'm looking for criticism and feedback ,not
-                                        just likes
-                                    </p>
-                                    <div class="d-flex justify-content-center mt-5">
-                                        <ul class="list-icons">
-                                            <li class="facebook"> <i class="fa fa-facebook"></i></li>
-                                            <li class="instagram"> <i class="fa fa-instagram"></i></li>
-                                            <li class="whatsapp"> <i class="fa fa-whatsapp"></i></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
-
-
-
 
                 </div>
 
@@ -125,25 +85,33 @@
                 <div class="carousel-item">
 
                     <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <?php
+
+$query = mysqli_query($conn, "SELECT * FROM `Tailorregester` where accept=1 and id >3 Limit 3");
+
+
+
+while($row = mysqli_fetch_assoc($query)){?>
                         <div class="col">
                             <div class="area1 bg-danger p-3 py-5"> </div>
                             <div class="area2 p- text-center px-3">
-                                <div class="image mr-3"> <img src="https://i.imgur.com/ZSkeqnd.jpg"
+                                <div class="image mr-3">
+                                     <img src="./Tailorpanel/uploads/<?php echo $row['file']; ?>"
                                         class="rounded-circle" width="100" />
-                                    <h4 class=" name mt-3 ">Anna Watson</h4>
-                                    <p class="information mt-3 text-justify">I'm doing this as a way to practice my
-                                        design
-                                        skills,explore different styles and have fun.I'm fully aware this challenge
-                                        doesn't pose
-                                        my
-                                        real problem to solve,That's why i'm looking for criticism and feedback ,not
-                                        just likes
+                                    <h4 class=" name mt-3 "><?php echo $row['username']; ?></h4>
+                                    <p class="information mt-3 text-justify">
+                                        <?php echo $row['about']; ?>
+
                                     </p>
                                     <div class="d-flex justify-content-center mt-5">
                                         <ul class="list-icons">
-                                            <li class="facebook"> <i class="fa fa-facebook"></i></li>
-                                            <li class="instagram"> <i class="fa fa-instagram"></i></li>
-                                            <li class="whatsapp"> <i class="fa fa-whatsapp"></i></li>
+                                            <a href="<?php echo $row['facebooklink']; ?>">
+                                                <li class="facebook"> <i class="fa fa-facebook"></i></li>
+                                            </a>
+                                            <a href="<?php echo $row['instalink']; ?>">
+                                                <li class="instagram"> <i class="fa fa-instagram"></i></li>
+                                            </a>
+
 
                                         </ul>
                                     </div>
@@ -151,148 +119,18 @@
 
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="area1 bg-warning p-3 py-5"> </div>
-                            <div class="area2 p- text-center px-3">
-                                <div class="image mr-3"> <img src="https://i.imgur.com/ZSkeqnd.jpg"
-                                        class="rounded-circle" width="100" />
-                                    <h4 class=" name mt-3 ">Anna Watson</h4>
-                                    <p class="information mt-3 text-justify">I'm doing this as a way to practice my
-                                        design
-                                        skills,explore different styles and have fun.I'm fully aware this challenge
-                                        doesn't pose
-                                        my
-                                        real problem to solve,That's why i'm looking for criticism and feedback ,not
-                                        just likes
-                                    </p>
-                                    <div class="d-flex justify-content-center mt-5">
-                                        <ul class="list-icons">
-                                            <li class="facebook"> <i class="fa fa-facebook"></i></li>
-                                            <li class="instagram"> <i class="fa fa-instagram"></i></li>
-                                            <li class="whatsapp"> <i class="fa fa-whatsapp"></i></li>
+                        <?php } ?>
 
-                                        </ul>
-                                    </div>
-                                </div>
 
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="area1 bg-primary p-3 py-5"> </div>
-                            <div class="area2 p- text-center px-3">
-                                <div class="image mr-3"> <img src="https://i.imgur.com/ZSkeqnd.jpg"
-                                        class="rounded-circle" width="100" />
-                                    <h4 class=" name mt-3 ">Anna Watson</h4>
-                                    <p class="information mt-3 text-justify">I'm doing this as a way to practice my
-                                        design
-                                        skills,explore different styles and have fun.I'm fully aware this challenge
-                                        doesn't pose
-                                        my
-                                        real problem to solve,That's why i'm looking for criticism and feedback ,not
-                                        just likes
-                                    </p>
-                                    <div class="d-flex justify-content-center mt-5">
-                                        <ul class="list-icons">
-                                            <li class="facebook"> <i class="fa fa-facebook"></i></li>
-                                            <li class="instagram"> <i class="fa fa-instagram"></i></li>
-                                            <li class="whatsapp"> <i class="fa fa-whatsapp"></i></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
 
-
                 </div>
-                <div class="carousel-item">
-
-                    <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <div class="col">
-                            <div class="area1 bg-danger p-3 py-5"> </div>
-                            <div class="area2 p- text-center px-3">
-                                <div class="image mr-3"> <img src="https://i.imgur.com/ZSkeqnd.jpg"
-                                        class="rounded-circle" width="100" />
-                                    <h4 class=" name mt-3 ">Anna Watson</h4>
-                                    <p class="information mt-3 text-justify">I'm doing this as a way to practice my
-                                        design
-                                        skills,explore different styles and have fun.I'm fully aware this challenge
-                                        doesn't pose
-                                        my
-                                        real problem to solve,That's why i'm looking for criticism and feedback ,not
-                                        just likes
-                                    </p>
-                                    <div class="d-flex justify-content-center mt-5">
-                                        <ul class="list-icons">
-                                            <li class="facebook"> <i class="fa fa-facebook"></i></li>
-                                            <li class="instagram"> <i class="fa fa-instagram"></i></li>
-                                            <li class="whatsapp"> <i class="fa fa-whatsapp"></i></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="area1 bg-warning p-3 py-5"> </div>
 
 
-                            <div class="area2 p- text-center px-3">
-                                <div class="image mr-3"> <img src="https://i.imgur.com/ZSkeqnd.jpg"
-                                        class="rounded-circle" width="100" />
-                                    <h4 class=" name mt-3 ">Anna Watson</h4>
-                                    <p class="information mt-3 text-justify">I'm doing this as a way to practice my
-                                        design
-                                        skills,explore different styles and have fun.I'm fully aware this challenge
-                                        doesn't pose
-                                        my
-                                        real problem to solve,That's why i'm looking for criticism and feedback ,not
-                                        just likes
-                                    </p>
-                                    <div class="d-flex justify-content-center mt-5">
-                                        <ul class="list-icons">
-                                            <li class="facebook"> <i class="fa fa-facebook"></i></li>
-                                            <li class="instagram"> <i class="fa fa-instagram"></i></li>
-                                            <li class="whatsapp"> <i class="fa fa-whatsapp"></i></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
 
 
-                        </div>
-                        <div class="col">
-                            <div class="area1 bg-primary p-3 py-5"> </div>
-                            <div class="area2 p- text-center px-3">
-                                <div class="image mr-3"> <img src="https://i.imgur.com/ZSkeqnd.jpg"
-                                        class="rounded-circle" width="100" />
-                                    <h4 class=" name mt-3 ">Anna Watson</h4>
-                                    <p class="information mt-3 text-justify">I'm doing this as a way to practice my
-                                        design
-                                        skills,explore different styles and have fun.I'm fully aware this challenge
-                                        doesn't pose
-                                        my
-                                        real problem to solve,That's why i'm looking for criticism and feedback ,not
-                                        just likes
-                                    </p>
-                                    <div class="d-flex justify-content-center mt-5">
-                                        <ul class="list-icons">
-                                            <li class="facebook"> <i class="fa fa-facebook"></i></li>
-                                            <li class="instagram"> <i class="fa fa-instagram"></i></li>
-                                            <li class="whatsapp"> <i class="fa fa-whatsapp"></i></li>
 
-                                        </ul>
-                                    </div>
-                                </div>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                 data-bs-slide="prev">

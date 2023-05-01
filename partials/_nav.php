@@ -26,10 +26,10 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.php" style="font-size: 14px">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14px">
               Categories
 			  
             </a>
@@ -38,10 +38,10 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
    
    
     <li>
-      <a class="dropdown-item" href="#">
+      <a class="dropdown-item" href="#" style="font-size: 14px">
         Women &raquo;
       </a>
-      <ul class="dropdown-menu dropdown-women">
+      <ul class="dropdown-menu dropdown-women" style="font-size: 14px">
         <li>
           <a class="dropdown-item" href="viewItemList.php?catid=1">Kurdish Clothes Sima</a>
         </li>
@@ -61,10 +61,10 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       </ul>
 
 	    <li>
-      <a class="dropdown-item" href="#">
+      <a class="dropdown-item" href="#" style="font-size: 14px">
         Men &raquo;
       </a>
-      <ul class="dropdown-menu dropdown-men">
+      <ul class="dropdown-menu dropdown-men" style="font-size: 14px">
         <li>
           <a class="dropdown-item" href="viewItemList.php?catid=24">Kurdish Clothes Mhamad</a>
         </li>
@@ -84,10 +84,10 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       </ul>
 	   
     <li>
-      <a class="dropdown-item" href="#">
+      <a class="dropdown-item" href="#" style="font-size: 14px">
         Accessories &raquo;
       </a>
-      <ul class="dropdown-menu dropdown-accessories">
+      <ul class="dropdown-menu dropdown-accessories" style="font-size: 14px">
         <li>
           <a class="dropdown-item" href="viewItemList.php?catid=28">RH Design Accessories</a>
         </li>
@@ -96,9 +96,7 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         </li> 
         </li>
       </ul>
-	   <li>
-      <a class="dropdown-item" href="#">Kids</a>
-	 </li>
+	 
   </ul>
    <div class="dropdown-menu" aria-labelledby="navbarDropdown">';
 $sql = 'SELECT categorieName, categorieId FROM `categories`';
@@ -112,7 +110,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 echo '</div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" style="font-size: 14px">
             <a class="nav-link" href="tailorstyle.php">Tailor Style</a>
           </li>
           <li class="nav-item">
@@ -126,7 +124,7 @@ echo '</div>
           </li>
           
         </ul>
-        <form method="get" action="/OnlineKC/search.php" class="form-inline my-2 my-lg-0 mx-3">
+        <form method="get" action="/OnlineKC/search.php" class="form-inline my-2 my-l g-0 mx-3">
           <input class="form-control mr-sm-2" type="search" name="search" id="search" placeholder="Search" aria-label="Search" required>
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>';
@@ -167,6 +165,7 @@ if ($loggedin) {
     echo '
           <button type="button" class="btn btn-success mx-2"  data-toggle="modal" data-target="#loginModal">Login</button>
           <button type="button" class="btn btn-success mx-2"  data-toggle="modal" data-target="#signupModal">SignUp</button>';
+          
 }
 
 echo '</div>
@@ -174,6 +173,8 @@ echo '</div>
 
 include 'partials/_loginModal.php';
 include 'partials/_signupModal.php';
+include 'partials/reset.php';
+
 
 if (isset($_GET['signupsuccess']) && $_GET['signupsuccess'] == 'true') {
     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">

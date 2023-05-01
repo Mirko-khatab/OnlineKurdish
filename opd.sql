@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2022 at 04:29 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Feb 19, 2023 at 08:07 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,24 +31,24 @@ CREATE TABLE `categories` (
   `categorieId` int(12) NOT NULL,
   `categorieName` varchar(255) NOT NULL,
   `categorieDesc` text NOT NULL,
-  `categorieCreateDate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `categorieCreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `itemId` int(12) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`categorieId`, `categorieName`, `categorieDesc`, `categorieCreateDate`) VALUES
-(1, 'Kurdish Clothes Sima', 'Address: Sulaymaniyah,Zewar', '2022-04-12 18:16:28'),
-(2, 'Kurdish Clothes Lawy', 'Address: Sulaymaniyah,Ranya', '2022-04-12 18:17:14'),
-(3, 'Kurdish Clothes Hawar', 'Address : Sulaymaniyah , Zewar', '2022-04-12 01:34:32'),
-(4, 'Kurdish Clothes Soran', 'Address: Sulaymaniyah , Daboka', '2022-04-15 03:11:01'),
-(24, 'Kurdish Clothes Mhamad', 'Address: Sulaymaniyah,Kawa', '2022-08-27 22:14:04'),
-(25, 'Kurdish Clothes Twana', 'Address: Sulaymaniyah,Kawa', '2022-08-28 17:24:50'),
-(26, 'Kurdish Clothes Ahmad', 'Address: Sulaymaniyah,Kawa', '2022-08-28 17:34:26'),
-(27, 'Kurdish Clothes Harem', 'Address: Sulaymaniyah,Kawa', '2022-08-28 17:45:08'),
-(28, 'RH Design Accessories', 'Address: Sulaymaniyah', '2022-08-28 17:55:27'),
-(30, 'Gull Design Accessories', 'Address: Sulaymaniyah', '2022-08-28 18:10:19');
+INSERT INTO `categories` (`categorieId`, `categorieName`, `categorieDesc`, `categorieCreateDate`, `itemId`) VALUES
+(2, 'Kurdish Clothes Lawy', 'Address: Sulaymaniyah,Ranya', '2022-04-12 18:17:14', 0),
+(3, 'Kurdish Clothes Hawar', 'Address : Sulaymaniyah , Zewar', '2022-04-12 01:34:32', 0),
+(4, 'Kurdish Clothes Soran', 'Address: Sulaymaniyah , Daboka', '2022-04-15 03:11:01', 0),
+(24, 'Kurdish Clothes Mhamad', 'Address: Sulaymaniyah,Kawa', '2022-08-27 22:14:04', 0),
+(25, 'Kurdish Clothes Twana', 'Address: Sulaymaniyah,Kawa', '2022-08-28 17:24:50', 0),
+(26, 'Kurdish Clothes Ahmad', 'Address: Sulaymaniyah,Kawa', '2022-08-28 17:34:26', 0),
+(27, 'Kurdish Clothes Harem', 'Address: Sulaymaniyah,Kawa', '2022-08-28 17:45:08', 0),
+(28, 'RH Design Accessories', 'Address: Sulaymaniyah', '2022-08-28 17:55:27', 0),
+(30, 'Gull Design Accessories', 'Address: Sulaymaniyah', '2022-08-28 18:10:19', 0);
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,7 @@ CREATE TABLE `contact` (
   `orderId` int(21) NOT NULL DEFAULT 0 COMMENT 'If problem is not related to the order then order id = 0',
   `message` text NOT NULL,
   `time` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `contact`
@@ -85,7 +85,7 @@ CREATE TABLE `contactreply` (
   `userId` int(23) NOT NULL,
   `message` text NOT NULL,
   `datetime` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `contactreply`
@@ -108,7 +108,7 @@ CREATE TABLE `deliverydetails` (
   `deliveryBoyPhoneNo` bigint(25) NOT NULL,
   `deliveryTime` int(200) NOT NULL COMMENT 'Time in minutes',
   `dateTime` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `deliverydetails`
@@ -117,7 +117,8 @@ CREATE TABLE `deliverydetails` (
 INSERT INTO `deliverydetails` (`id`, `orderId`, `deliveryBoyName`, `deliveryBoyPhoneNo`, `deliveryTime`, `dateTime`) VALUES
 (1, 1, '', 0, 0, '2022-04-12 02:37:31'),
 (3, 2, '', 0, 0, '2022-04-21 01:56:19'),
-(5, 3, '', 0, 0, '2022-09-04 13:52:32');
+(5, 3, '', 0, 0, '2022-09-04 13:52:32'),
+(7, 4, '', 0, 0, '2022-11-22 09:29:57');
 
 -- --------------------------------------------------------
 
@@ -132,7 +133,7 @@ CREATE TABLE `item` (
   `itemDesc` text NOT NULL,
   `itemCategorieId` int(12) NOT NULL,
   `itemPubDate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `item`
@@ -184,7 +185,7 @@ CREATE TABLE `orderitems` (
   `orderId` int(21) NOT NULL,
   `itemId` int(21) NOT NULL,
   `itemQuantity` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orderitems`
@@ -196,7 +197,8 @@ INSERT INTO `orderitems` (`id`, `orderId`, `itemId`, `itemQuantity`) VALUES
 (3, 2, 13, 2),
 (4, 2, 14, 1),
 (5, 3, 1, 2),
-(6, 3, 5, 1);
+(6, 3, 5, 1),
+(7, 4, 55, 1);
 
 -- --------------------------------------------------------
 
@@ -214,7 +216,7 @@ CREATE TABLE `orders` (
   `paymentMode` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0=cash on delivery, \r\n1=online ',
   `orderStatus` enum('0','1','2','3','4','5','6') NOT NULL DEFAULT '0' COMMENT '0=Order Placed.\r\n1=Order Confirmed.\r\n2=Preparing your Order.\r\n3=Your order is on the way!\r\n4=Order Delivered.\r\n5=Order Denied.\r\n6=Order Cancelled.',
   `orderDate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
@@ -223,7 +225,8 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`orderId`, `userId`, `address`, `zipCode`, `phoneNo`, `amount`, `paymentMode`, `orderStatus`, `orderDate`) VALUES
 (1, 1, '12345, 124', 111111, 7701490741, 198, '0', '1', '2022-04-12 02:37:31'),
 (2, 1, 'hkh, errew', 127757, 4272725755, 298, '0', '1', '2022-04-21 01:56:18'),
-(3, 1, 'slemani, kurdsat', 126665, 4272725755, 253, '0', '0', '2022-09-04 13:52:32');
+(3, 1, 'slemani, kurdsat', 126665, 4272725755, 253, '0', '0', '2022-09-04 13:52:32'),
+(4, 14, 'bazian, raparin', 676748, 7725221235, 50, '0', '0', '2022-11-22 09:29:57');
 
 -- --------------------------------------------------------
 
@@ -239,7 +242,7 @@ CREATE TABLE `sitedetail` (
   `contact2` bigint(21) DEFAULT NULL COMMENT 'Optional',
   `address` text NOT NULL,
   `dateTime` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `sitedetail`
@@ -258,11 +261,11 @@ CREATE TABLE `tailor` (
   `User_ID` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `Phone` int(255) NOT NULL,
+  `Phone` text NOT NULL,
   `City` varchar(255) NOT NULL,
   `Address` varchar(255) NOT NULL,
   `Gender` varchar(255) NOT NULL,
-  `Numcard` int(255) NOT NULL,
+  `Numcard` text NOT NULL,
   `Noteorder` varchar(255) NOT NULL,
   `Typestyle` varchar(255) NOT NULL,
   `Qyasishan` double(200,1) NOT NULL,
@@ -270,17 +273,64 @@ CREATE TABLE `tailor` (
   `Qyasisng` double(200,1) NOT NULL,
   `Drezhiqol` double(200,1) NOT NULL,
   `Drezhibla` double(200,1) NOT NULL,
-  `Image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Tailorid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `tailor`
+-- Table structure for table `tailorpost`
 --
 
-INSERT INTO `tailor` (`User_ID`, `Name`, `Email`, `Phone`, `City`, `Address`, `Gender`, `Numcard`, `Noteorder`, `Typestyle`, `Qyasishan`, `Panibal`, `Qyasisng`, `Drezhiqol`, `Drezhibla`, `Image`) VALUES
-(4, 'kanar', 'kanar12@gmail.com', 770197656, 'Sulaymaniyah', 'kurdsat', 'Female', 484897, 'fsfwe', 'Swltan Style max', 44.0, 44.0, 55.0, 78.0, 190.0, ''),
-(5, 'barez', 'barez@gmail.com', 770197656, 'sulaimaniyah', 'kurdsat', 'Female', 484897, 'nybkjlm', 'Swltan Style max', 44.0, 44.0, 45.0, 78.0, 190.0, ''),
-(6, 'kanar tariq mstafa', 'kanar123@gmail.com', 42727257, 'suli', 'hkh', 'Female', 5247527, 'tyreyey', 'Swltan Style', 52.0, 55.0, 5.0, 55.0, 75.0, '');
+CREATE TABLE `tailorpost` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `title` text NOT NULL,
+  `img` text NOT NULL,
+  `tailorId` int(11) NOT NULL,
+  `gender` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tailorpost`
+--
+
+INSERT INTO `tailorpost` (`id`, `name`, `title`, `img`, `tailorId`, `gender`) VALUES
+(2, 'hamakawa', 'hama kawa', 'men.jpg', 1, 'male'),
+(5, 'new ', 'new', 'women.png', 1, 'female');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tailorregester`
+--
+
+CREATE TABLE `tailorregester` (
+  `id` int(11) NOT NULL,
+  `username` varchar(21) NOT NULL,
+  `firstName` varchar(21) NOT NULL,
+  `lastName` varchar(21) NOT NULL,
+  `email` varchar(21) NOT NULL,
+  `phone` bigint(11) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `joinDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `facebooklink` text NOT NULL,
+  `instalink` text NOT NULL,
+  `file` text NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `about` text NOT NULL,
+  `accept` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tailorregester`
+--
+
+INSERT INTO `tailorregester` (`id`, `username`, `firstName`, `lastName`, `email`, `phone`, `password`, `joinDate`, `facebooklink`, `instalink`, `file`, `gender`, `about`, `accept`) VALUES
+(1, 'tailor', 'tailor', '1', 'tailor@gmail.com', 7725221235, '12345678', '2022-10-28 16:52:33', 'https://www.facebook.com/mirko.kawa.921', 'https://www.facebook.com/mirko.kawa.921', 'kch.jpg', 'mail', 'tailor profelo to talk about her self ', 1),
+(2, 'tailor2', 'tailor', '2', 'tailor2@gmail.com', 7725221235, '$2y$10$XSMiT.ic.utGDgBl8qvMkOJRflsfYXodBwJuabYP9/h5kFjhT4py.', '2022-10-28 16:55:49', 'https://www.facebook.com/', 'https://www.instagram.com/', 'kch.jpg', 'female', 'tailor profelo to talk about her self ', 1),
+(3, 'monster', 'monster', 'keyscoor', 'mirko@gmail.com', 7725221235, '$2y$10$zin1PAqPz2GDFITbtKgeie24nUf7qMU9yUihtviwQBiIA.IoxoQJ.', '2022-11-05 22:43:49', 'https://www.facebook.com/', 'https://www.instagram.com/', 'kch.jpg', 'mail', 'tailor profelo to talk about her self ', 1),
+(44, 'tailor4', 'tailor', '4', 'tailor4@gmail.com', 7725221235, '$2y$10$XSMiT.ic.utGDgBl8qvMkOJRflsfYXodBwJuabYP9/h5kFjhT4py.', '2022-10-28 16:55:49', 'https://www.facebook.com/', 'https://www.instagram.com/', 'kch.jpg', 'female', 'tailor profelo to talk about her self ', 1);
 
 -- --------------------------------------------------------
 
@@ -298,14 +348,15 @@ CREATE TABLE `users` (
   `userType` enum('0','1') NOT NULL DEFAULT '0' COMMENT '0=user\r\n1=admin',
   `password` varchar(255) NOT NULL,
   `joinDate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `firstName`, `lastName`, `email`, `phone`, `userType`, `password`, `joinDate`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin@gmail.com', 1111111111, '1', '$2y$10$AAfxRFOYbl7FdN17rN3fgeiPu/xQrx6MnvRGzqjVHlGqHAM4d9T1i', '2021-04-11 11:40:58');
+(7, 'user', 'user', 'yakam', 'user@gmail.com', 7725221235, '0', '12345678', '2022-10-16 20:03:11'),
+(8, 'admin', 'admin', 'admin', 'admin@gmail.com', 7725221235, '1', 'admin', '2022-10-27 12:41:05');
 
 -- --------------------------------------------------------
 
@@ -319,7 +370,7 @@ CREATE TABLE `viewcart` (
   `itemQuantity` int(100) NOT NULL,
   `userId` int(11) NOT NULL,
   `addedDate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `viewcart`
@@ -343,13 +394,17 @@ ALTER TABLE `categories` ADD FULLTEXT KEY `categorieName` (`categorieName`,`cate
 -- Indexes for table `contact`
 --
 ALTER TABLE `contact`
-  ADD PRIMARY KEY (`contactId`);
+  ADD PRIMARY KEY (`contactId`),
+  ADD KEY `orderId` (`orderId`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indexes for table `contactreply`
 --
 ALTER TABLE `contactreply`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contactId` (`contactId`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indexes for table `deliverydetails`
@@ -368,13 +423,16 @@ ALTER TABLE `item`
 -- Indexes for table `orderitems`
 --
 ALTER TABLE `orderitems`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `itemQuantity` (`itemQuantity`),
+  ADD KEY `orderId` (`orderId`);
 
 --
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`orderId`);
+  ADD PRIMARY KEY (`orderId`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indexes for table `sitedetail`
@@ -386,7 +444,21 @@ ALTER TABLE `sitedetail`
 -- Indexes for table `tailor`
 --
 ALTER TABLE `tailor`
-  ADD PRIMARY KEY (`User_ID`);
+  ADD PRIMARY KEY (`User_ID`),
+  ADD KEY `Tailorid` (`Tailorid`);
+
+--
+-- Indexes for table `tailorpost`
+--
+ALTER TABLE `tailorpost`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tailorId` (`tailorId`);
+
+--
+-- Indexes for table `tailorregester`
+--
+ALTER TABLE `tailorregester`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -399,7 +471,9 @@ ALTER TABLE `users`
 -- Indexes for table `viewcart`
 --
 ALTER TABLE `viewcart`
-  ADD PRIMARY KEY (`cartItemId`);
+  ADD PRIMARY KEY (`cartItemId`),
+  ADD KEY `itemId` (`itemId`),
+  ADD KEY `itemQuantity` (`itemQuantity`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -427,7 +501,7 @@ ALTER TABLE `contactreply`
 -- AUTO_INCREMENT for table `deliverydetails`
 --
 ALTER TABLE `deliverydetails`
-  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `item`
@@ -439,13 +513,13 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `orderitems`
 --
 ALTER TABLE `orderitems`
-  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderId` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `orderId` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sitedetail`
@@ -457,19 +531,129 @@ ALTER TABLE `sitedetail`
 -- AUTO_INCREMENT for table `tailor`
 --
 ALTER TABLE `tailor`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `tailorpost`
+--
+ALTER TABLE `tailorpost`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `tailorregester`
+--
+ALTER TABLE `tailorregester`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `viewcart`
 --
 ALTER TABLE `viewcart`
-  MODIFY `cartItemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `cartItemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `contact`
+--
+ALTER TABLE `contact`
+  ADD CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`),
+  ADD CONSTRAINT `contact_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `contact_ibfk_3` FOREIGN KEY (`userId`) REFERENCES `contactreply` (`id`),
+  ADD CONSTRAINT `contact_ibfk_4` FOREIGN KEY (`userId`) REFERENCES `orderitems` (`id`),
+  ADD CONSTRAINT `contact_ibfk_5` FOREIGN KEY (`contactId`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `contact_ibfk_6` FOREIGN KEY (`userId`) REFERENCES `orders` (`orderId`);
+
+--
+-- Constraints for table `contactreply`
+--
+ALTER TABLE `contactreply`
+  ADD CONSTRAINT `contactreply_ibfk_1` FOREIGN KEY (`contactId`) REFERENCES `contact` (`contactId`),
+  ADD CONSTRAINT `contactreply_ibfk_10` FOREIGN KEY (`userId`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `contactreply_ibfk_11` FOREIGN KEY (`userId`) REFERENCES `deliverydetails` (`id`),
+  ADD CONSTRAINT `contactreply_ibfk_12` FOREIGN KEY (`userId`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `contactreply_ibfk_13` FOREIGN KEY (`userId`) REFERENCES `contact` (`contactId`),
+  ADD CONSTRAINT `contactreply_ibfk_14` FOREIGN KEY (`userId`) REFERENCES `contact` (`contactId`),
+  ADD CONSTRAINT `contactreply_ibfk_2` FOREIGN KEY (`id`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `contactreply_ibfk_3` FOREIGN KEY (`id`) REFERENCES `orderitems` (`id`),
+  ADD CONSTRAINT `contactreply_ibfk_4` FOREIGN KEY (`id`) REFERENCES `orderitems` (`orderId`),
+  ADD CONSTRAINT `contactreply_ibfk_5` FOREIGN KEY (`id`) REFERENCES `orders` (`orderId`),
+  ADD CONSTRAINT `contactreply_ibfk_6` FOREIGN KEY (`userId`) REFERENCES `sitedetail` (`tempId`),
+  ADD CONSTRAINT `contactreply_ibfk_7` FOREIGN KEY (`userId`) REFERENCES `orders` (`userId`),
+  ADD CONSTRAINT `contactreply_ibfk_8` FOREIGN KEY (`userId`) REFERENCES `orders` (`orderId`),
+  ADD CONSTRAINT `contactreply_ibfk_9` FOREIGN KEY (`userId`) REFERENCES `orderitems` (`id`);
+
+--
+-- Constraints for table `deliverydetails`
+--
+ALTER TABLE `deliverydetails`
+  ADD CONSTRAINT `deliverydetails_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`),
+  ADD CONSTRAINT `deliverydetails_ibfk_2` FOREIGN KEY (`id`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `deliverydetails_ibfk_3` FOREIGN KEY (`id`) REFERENCES `orderitems` (`id`);
+
+--
+-- Constraints for table `orderitems`
+--
+ALTER TABLE `orderitems`
+  ADD CONSTRAINT `orderitems_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`),
+  ADD CONSTRAINT `orderitems_ibfk_2` FOREIGN KEY (`id`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `orderitems_ibfk_3` FOREIGN KEY (`itemQuantity`) REFERENCES `orders` (`orderId`),
+  ADD CONSTRAINT `orderitems_ibfk_4` FOREIGN KEY (`itemQuantity`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `orderitems_ibfk_5` FOREIGN KEY (`itemQuantity`) REFERENCES `orderitems` (`id`),
+  ADD CONSTRAINT `orderitems_ibfk_6` FOREIGN KEY (`itemQuantity`) REFERENCES `orders` (`orderId`),
+  ADD CONSTRAINT `orderitems_ibfk_7` FOREIGN KEY (`orderId`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `orderitems_ibfk_8` FOREIGN KEY (`orderId`) REFERENCES `orderitems` (`id`);
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`orderId`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`orderId`) REFERENCES `orderitems` (`id`);
+
+--
+-- Constraints for table `sitedetail`
+--
+ALTER TABLE `sitedetail`
+  ADD CONSTRAINT `sitedetail_ibfk_1` FOREIGN KEY (`tempId`) REFERENCES `orders` (`orderId`),
+  ADD CONSTRAINT `sitedetail_ibfk_2` FOREIGN KEY (`tempId`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `sitedetail_ibfk_3` FOREIGN KEY (`tempId`) REFERENCES `contact` (`contactId`),
+  ADD CONSTRAINT `sitedetail_ibfk_4` FOREIGN KEY (`tempId`) REFERENCES `deliverydetails` (`id`);
+
+--
+-- Constraints for table `tailor`
+--
+ALTER TABLE `tailor`
+  ADD CONSTRAINT `tailor_ibfk_1` FOREIGN KEY (`Tailorid`) REFERENCES `tailorregester` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tailor_ibfk_2` FOREIGN KEY (`User_ID`) REFERENCES `tailorpost` (`tailorId`);
+
+--
+-- Constraints for table `tailorpost`
+--
+ALTER TABLE `tailorpost`
+  ADD CONSTRAINT `tailorPost_ibfk_1` FOREIGN KEY (`tailorId`) REFERENCES `tailorregester` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id`) REFERENCES `item` (`itemId`);
+
+--
+-- Constraints for table `viewcart`
+--
+ALTER TABLE `viewcart`
+  ADD CONSTRAINT `viewcart_ibfk_1` FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`),
+  ADD CONSTRAINT `viewcart_ibfk_2` FOREIGN KEY (`itemQuantity`) REFERENCES `categories` (`categorieId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

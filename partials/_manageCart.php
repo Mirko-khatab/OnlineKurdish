@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include '_dbconnect.php';
 session_start();
 
@@ -66,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $itemSql = "INSERT INTO `orderitems` (`orderId`, `itemId`, `itemQuantity`) VALUES ('$orderId', '$itemId', '$itemQuantity')";
 					$deliverDetailSql = "INSERT INTO `deliverydetails` (`orderId`, `dateTime`) VALUES ('$orderId',current_timestamp())";
                     $itemResult = mysqli_query($conn, $itemSql);
-					$itemResult1 = mysqli_query($conn, $deliverDetailSql);
+					// $itemResult1 = mysqli_query($conn, $deliverDetailSql);
                 }
                 $deletesql = "DELETE FROM `viewcart` WHERE `userId`='$userId'";   
                 $deleteresult = mysqli_query($conn, $deletesql);

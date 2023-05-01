@@ -1,6 +1,7 @@
-<?php
-include 'modal1.php'; ?>
-<!doctype html>
+<?php include 'partials/_dbconnect.php';?>
+   <?php require 'partials/_nav.php' ?>
+
+   <!doctype html>
 <html lang="en">
 
 <head>
@@ -286,46 +287,71 @@ include 'modal1.php'; ?>
 
 <body>
 
-
-
-    <?php
-  error_reporting(E_ERROR | E_PARSE);
-  include 'partials/_dbconnect.php';
-  ?>
-    <?php include 'partials/Tailornav.php'; ?>
-
+<!-- bo style zhnan -->
 
     <div class="container">
         <div class="section-title">
             <h1>Tilor Style Kurdish Clothes</h1>
         </div>
+
+        <!-- <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+  <label class="form-check-label" for="inlineRadio1">red</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+  <label class="form-check-label" for="inlineRadio2">blue</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
+  <label class="form-check-label" for="inlineRadio3">green</label>
+</div>
+
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
+  <label class="form-check-label" for="inlineRadio3">yellow</label>
+</div>
+
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
+  <label class="form-check-label" for="inlineRadio3">purple</label>
+</div> -->
+
         <h4>Women Style</h4>
         <hr>
 
 
         <div class="row">
 
+            <?php
+                $sql = "SELECT tailorPost.* ,Tailorregester.id,Tailorregester.file,Tailorregester.username FROM `tailorPost`,Tailorregester WHERE tailorPost.gender='female' AND tailorPost.tailorId=Tailorregester.id";
+                $result = mysqli_query($conn, $sql);
+                while($row = mysqli_fetch_assoc($result)){
+                  
+                
+             
+             ?>
             <div class="column">
 
-                <div class="effect">
-                    <div class="effect-img">
-                        <img src="img/t1.jpg" alt="">
+                <div class="effect" >
+                    <div class="effect-img" >
+                    <img src="./Tailorpanel/uploads/<?php echo $row['img']?>" alt="" style="background-size:contain; max-height: 500;"  >
                     </div>
+                    <!-- katek hove axaeta sar orderaka rasmek neshan adat lagal title kaew farmane order krdnakae -->
                     <div class="effect-text">
                         <div class="px-3 inner">
-                            <div class="image mr-3"> <img src="https://i.imgur.com/ZSkeqnd.jpg" class="rounded-circle"
-                                    width="100" />
-                                <h4 class=" name mt-3" style="color: white;">lanya burhan</h4>
+                            <div class="image mr-3">
+
+                            <img src="./Tailorpanel/uploads/<?php echo $row['file']?>"  class="rounded-circle" width="100" />
+                                <h4 class=" name mt-3" style="color: white;"><?php echo $row['username']?></h4>
+                                <h4 class=" name mt-3" style="color: white;"><?php echo $row['name']?></h4>
+
                                 <p style="color: white;">
 
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quasi voluptates
-                                    nulla culpa vero maiores doloremque, recusandae esse! Dolore odio quia ullam
-                                    laudantium
-                                    commodi optio eos sequi ab impedit quibusdam?
+                                    <?php echo $row['title'];?>
                                 </p>
                                 <div class="effect-btn">
                                     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#m1">Order
-
                                         Style</a>
                                 </div>
 
@@ -336,10 +362,11 @@ include 'modal1.php'; ?>
                 </div>
 
             </div>
+            <?php }?>
 
 
 
-
+<!-- am br bo awae beta line xwartrawa lerwawa style peawan dast pe aka wak awae sarawa waya bas ama baw marjae ka peaw be orderakae -->
             <br><br>
             <div class="section-title">
                 <h4>Men Style</h4>
@@ -347,27 +374,37 @@ include 'modal1.php'; ?>
 
             <hr>
 
+            <?php
+             $sql = "SELECT tailorPost.* ,Tailorregester.id,Tailorregester.file,Tailorregester.username FROM `tailorPost`,Tailorregester WHERE tailorPost.gender='male' AND tailorPost.tailorId=Tailorregester.id";
+             $result = mysqli_query($conn, $sql);
+                while($row = mysqli_fetch_assoc($result)){
+                  
+                
+             
+             ?>
             <div class="column">
+                
 
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/t1.jpg" alt="">
+                        <img src="./Tailorpanel/uploads/<?php echo $row['img']?>" style="background-size:contain; max-height: 500;" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="px-3 inner">
-                            <div class="image mr-3"> <img src="https://i.imgur.com/ZSkeqnd.jpg" class="rounded-circle"
-                                    width="100" />
-                                <h4 class=" name mt-3" style="color: white;">lanya burhan</h4>
+                            <div class="image mr-3">
+                            <img src="./Tailorpanel/uploads/<?php echo $row['file']?>"  class="rounded-circle"  width="100" />
+                            
+                      
+       
+                            <h4 class=" name mt-3" style="color: white;"><?php echo $row['username']?></h4>
+
+                                <h4 class=" name mt-3" style="color: white;"><?php echo $row['name']?></h4>
                                 <p style="color: white;">
 
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quasi voluptates
-                                    nulla culpa vero maiores doloremque, recusandae esse! Dolore odio quia ullam
-                                    laudantium
-                                    commodi optio eos sequi ab impedit quibusdam?
+                                    <?php echo $row['title'];?>
                                 </p>
                                 <div class="effect-btn">
-                                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#m1">Order
-
+                                    <a href="./modal1.php?id=<?php echo $row['id'] ?>" class="btn btn-primary" data-toggle="modal" data-target="#m1">Order
                                         Style</a>
                                 </div>
 
@@ -378,6 +415,7 @@ include 'modal1.php'; ?>
                 </div>
 
             </div>
+            <?php }?>
 
 
 
@@ -387,7 +425,10 @@ include 'modal1.php'; ?>
     <?php include './tobeTailor.php'; ?>
     <?php include './partials/_footer.php'; ?>
     <!-- Message Modal -->
-
+    
+    <!-- katek clikc la order akae   am modala render abe ka la formek pek hatwa bo neshandane dawakareakan  -->
+    <?php include 'modal1.php'; ?>
+    
 
     <!-- history Modal -->
 

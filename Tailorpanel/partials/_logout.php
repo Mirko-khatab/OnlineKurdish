@@ -2,9 +2,9 @@
 
 session_start();
 echo "Logging you out. Please wait...";
-unset($_SESSION["adminloggedin"]);
-unset($_SESSION["adminusername"]);
-unset($_SESSION["adminuserId"]);
+unset($_SESSION["tailorId"]);
+unset($_SESSION["Tailorlogin"]);
+unset($_SESSION["Tailorusername"]);
 
 // session_unset();
 // session_destroy();
