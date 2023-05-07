@@ -27,6 +27,8 @@
 <body>
   <?php include 'partials/_dbconnect.php';?>
   <?php require 'partials/_nav.php' ?>
+
+  
   
   
   <!-- ======= Hero Section ======= -->
@@ -35,6 +37,7 @@
       <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
         <div class="carousel-inner" role="listbox">
+          
           <!-- Slide 1 -->
           <div class="carousel-item active">
             <div class="carousel-background"><img src="assets/img/slide/s9.JPG" alt=""></div>
@@ -65,6 +68,11 @@
             </div>
           </div>
           <!-- Slide 3 -->
+
+
+
+
+
           
       <div class="carousel-item">
             <div class="carousel-background"><img src="assets/img/slide/s19.jpg" alt=""></div>
