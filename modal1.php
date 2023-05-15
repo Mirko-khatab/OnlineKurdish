@@ -16,11 +16,8 @@
                                 <h3>Tailor order</h3><br>
                                 <!-- <div class="form-group"> -->
 
-                                
                                 <form action="./partials/tailororder.php" method="post">
-                                    
                                     <label>Full Name </label>
-                                    
                                     <input type="text" name="name" alt="name" class="form-control ">
                             </div>
                             <div class="form-group">
@@ -46,8 +43,6 @@
                                 <input type="radio" name="gender" value="Male" onclick="myFunction(this.value)">Male<i class="fa fa-male"
                                     aria-hidden="true"></i>
                             </div>
-                            
-          
 
 
                             <div class="form-group">
@@ -68,11 +63,11 @@
                             <br>
                             <h5>Size Clothes</h5>
                             <div class="form-group">
-                                <label>Qyasi Shan</label>
+                                <label>size shoulder</label>
                                 <input type="double" name="sshan" alt="sshan" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Pani Ball</label>
+                                <label>Arm</label>
                                 <input type="double" name="pball" alt="sshan" class="form-control">
                             </div>
                             <Script>
@@ -98,11 +93,11 @@
 
 
                       <div class="form-group" style="display: none;" id="Fem" >
-                                <label>Qyasi Sng</label>
+                                <label>Qyasi brest</label>
                                 <input type="double" name="ssng" alt="sshan" class="form-control">
                             </div>                           
                             <div class="form-group" style="display: none;" id="mel" >
-                                <label>Qyasi sharwal</label>
+                                <label>sharwal size</label>
                                 <input type="double" name="ssharwal" alt="ssharwal" class="form-control">
                             </div>    
                        
@@ -112,7 +107,7 @@
                                 <input type="double" name="sqol" alt="sshan" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Drezhi Balla</label>
+                                <label>Drezhi arms</label>
                                 <input type="double" name="sbala" alt="sshan" class="form-control">
                             </div>
 

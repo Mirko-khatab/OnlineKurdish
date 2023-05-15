@@ -7,8 +7,11 @@
             <div class="row">
                 <div class="col-sm-4">
                     <h2>Work <b>Details</b></h2>
+                    <a href="./backup.php">
+                        back up data
+                    </a>
                 </div>
-                <div class="col-sm-8">						
+                <div class="col-sm-8">
                     <a href="" class="btn btn-primary"><i class="material-icons">&#xE863;</i> <span>Refresh List</span></a>
                     <a href="#" onclick="window.print()" class="btn btn-info"><i class="material-icons">&#xE24D;</i> <span>Print</span></a>
                 </div>

@@ -1,62 +1,58 @@
 <?php
 include('../partials/_dbconnect.php');
+
 if(isset($_POST['submit'])){
-	  
-       $Uname = mysqli_real_escape_string($conn,$_POST['name']);
-         $Uemail = mysqli_real_escape_string($conn,$_POST['email']);
-	      $Uphone =mysqli_real_escape_string($conn,$_POST['phone']);
-    $Ucity = mysqli_real_escape_string($conn,$_POST['city']);
-	   $Uaddress = mysqli_real_escape_string($conn,$_POST['address']);
-    $Ugender = mysqli_real_escape_string($conn,$_POST['gender']);
-	$Ucardnum = mysqli_real_escape_string($conn,$_POST['cardnum']);
-	$Uorder = mysqli_real_escape_string($conn,$_POST['order']);
-	$Utypestyle = mysqli_real_escape_string($conn,$_POST['typestyle']);
-	$Usshan =mysqli_real_escape_string($conn,$_POST['sshan']);
-	$Upball =mysqli_real_escape_string($conn,$_POST['pball']);
-	$Ussng = mysqli_real_escape_string($conn,$_POST['ssng']);
-	$Usqol =mysqli_real_escape_string($conn,$_POST['sqol']);
-	$Usbala =mysqli_real_escape_string($conn,$_POST['sbala']);
-	$tailorid =mysqli_real_escape_string($conn,$_POST['submit']);
-	$sharwal =mysqli_real_escape_string($conn,$_POST['ssharwal']);
-//echo all data in next line 
-echo "username---------->".$Uname."<br>";
-echo"email---------->". $Uemail."<br>";
-echo "uphone---------->". $Uphone."<br>";
-echo " city ---------->".$Ucity."<br>";
-echo "addrase---------->".$Uaddress."<br>";
-echo"gender---------->". $Ugender."<br>";
-echo "order---------->".$Uorder."<br>";
-echo "typstyle---------->".$Utypestyle."<br>";
-echo "shan ---------->".$Usshan."<br>";
-echo "ball---------->".$Upball."<br>";
-echo "sng---------->".$Ussng."<br>";
-echo "qol---------->".$Usqol."<br>";
-echo "ball---------->".$Usbala."<br>";
-//tailorid filter only number 
+
+
+	
+    $name =  $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $city =  $_POST['city'];
+    $address = $_POST['address'];
+    $gender = $_POST['gender'];
+    $numcard = $_POST['cardnum'];
+    $noteorder = $_POST['order'];
+    $typestyle = $_POST['typestyle'];
+    $qyasishan = $_POST['sshan'];
+    $panibal = $_POST['pball'];
+    $qyasisng = $_POST['ssng'];
+    $drezhiqol = $_POST['sqol'];
+    $drezhibla = $_POST['sbala'];
+    $tailorid = $_POST['submit'];
 $tailorid = preg_replace('/[^0-9]/', '', $tailorid);
-echo "tailorid---------->".$tailorid."<br>";
 
 
 
-     
-$sql = "INSERT INTO `tailor` (`User_ID`, `Name`, `Email`, `Phone`, `City`, `Address`, `Gender`, `drezheSharwal`, `Noteorder`, `Typestyle`, `Qyasishan`, `Panibal`, `Qyasisng`, `Drezhiqol`, `Drezhibla`, `Tailorid`) VALUES (NULL, '$Uname', '$Uemail', '$Uphone', '$Ucity', '$Uaddress', '$Ugender', '$sharwal', '$Uorder', '$Utypestyle', '$Usshan', '$Upball', '$Ussng', '$Usqol', '$Usbala', '$tailorid')";
-
-// "INSERT INTO `tailor` (`User_ID`, `Name`, `Email`, `Phone`, `City`, `Address`, `Gender`, `Numcard`, `Noteorder`, `Typestyle`, `Qyasishan`, `Panibal`, `Qyasisng`, `Drezhiqol`, `Drezhibla,`Tailorid`) VALUES (NULL, '$Uname', '$Uemail', '$Ucardnum', '$Ucity', '$Uaddress', '$Ugender', '$Ucardnum', ' $Uorder', '$Utypestyle', '$Usshan', '$Upball', '$Ussng', '$Usqol', '$Usbala' ,'$tailorid');";  
 
 
-$result = mysqli_query($conn, $sql);
-if ($result){
+    // Sanitize user input
+    $name = mysqli_real_escape_string($conn, $name);
+    $email = mysqli_real_escape_string($conn, $email);
+    $phone = mysqli_real_escape_string($conn, $phone);
+    $city = mysqli_real_escape_string($conn, $city);
+    $address = mysqli_real_escape_string($conn, $address);
+    $gender = mysqli_real_escape_string($conn, $gender);
+    $numcard = mysqli_real_escape_string($conn, $numcard);
+    $noteorder = mysqli_real_escape_string($conn, $noteorder);
+    $typestyle = mysqli_real_escape_string($conn, $typestyle);
+    $qyasishan = mysqli_real_escape_string($conn, $qyasishan);
+    $panibal = mysqli_real_escape_string($conn, $panibal);
+    $qyasisng = mysqli_real_escape_string($conn, $qyasisng);
+    $drezhiqol = mysqli_real_escape_string($conn, $drezhiqol);
+    $drezhibla = mysqli_real_escape_string($conn, $drezhibla);
+    $tailorid = mysqli_real_escape_string($conn, $tailorid);
 
-    header("Location: /OnlineKC/tailorstyle.php");
+    // // Prepare and execute SQL statement
+    $stmt = mysqli_prepare($conn, "INSERT INTO `tailor` (`User_ID`, `Name`, `Email`, `Phone`, `City`, `Address`, `Gender`, `Numcard`, `Noteorder`, `Typestyle`, `Qyasishan`, `Panibal`, `Qyasisng`, `Drezhiqol`, `Drezhibla`, `Tailorid`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "sssssssssssssss", $name, $email, $phone, $city, $address, $gender, $numcard, $noteorder, $typestyle, $qyasishan, $panibal, $qyasisng, $drezhiqol, $drezhibla, $tailorid);
+
+    if (mysqli_stmt_execute($stmt)) {
+        header("Location: /OnlineKC/tailorstyle.php");
+    } else {
+        $showError = mysqli_error($conn);
+        header("Location: /OnlineKC/index.php?signupsuccess=false&error=$showError");
+    }
+
+    mysqli_stmt_close($stmt);
 }
-
-else{
-$showError = "sorry you have an error";
-header("Location: /OnlineKC/index.php?signupsuccess=false&error=$showError");
-}
-
-
-
-}
- 	 	   
-?>

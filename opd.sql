@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 07, 2023 at 10:15 AM
+-- Generation Time: May 15, 2023 at 04:46 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -71,7 +71,8 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`contactId`, `userId`, `email`, `phoneNo`, `orderId`, `message`, `time`) VALUES
-(1, 1, 'admin@gmail.com', 1111111111, 1, 'helppppp', '2022-04-12 02:42:52');
+(1, 1, 'admin@gmail.com', 1111111111, 1, 'helppppp', '2022-04-12 02:42:52'),
+(4, 26, 'user@gmail.com', 7725221235, 0, 'hellp me ', '2023-05-14 11:38:04');
 
 -- --------------------------------------------------------
 
@@ -206,7 +207,8 @@ INSERT INTO `orderitems` (`id`, `orderId`, `itemId`, `itemQuantity`) VALUES
 (12, 11, 58, 1),
 (13, 12, 58, 1),
 (14, 13, 2, 1),
-(15, 14, 56, 1);
+(15, 14, 56, 1),
+(16, 15, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -242,7 +244,10 @@ INSERT INTO `orders` (`orderId`, `userId`, `address`, `zipCode`, `phoneNo`, `amo
 (11, 25, '1234 main strit, near stret', 902112, 3939948484, 40, '0', '0', '2023-05-01 14:13:08'),
 (12, 25, '1234 main strit, near stret', 902112, 3939948484, 40, '0', '1', '2023-05-01 14:13:26'),
 (13, 25, 'mr dude order , near st', 939393, 3939393939, 99, '0', '0', '2023-05-01 14:15:43'),
-(14, 25, 'amama, amamama', 449449, 3333333333, 50, '0', '0', '2023-05-01 15:15:56');
+(14, 25, 'amama, amamama', 449449, 3333333333, 50, '0', '0', '2023-05-01 15:15:56'),
+(15, 26, 'raparin-12, Beverly Hills', 902113, 7725221235, 99, '0', '0', '2023-05-13 19:00:35'),
+(16, 26, 'sulaimajiya , sulaimajiya', 902113, 7725221235, 198, '0', '0', '2023-05-14 12:35:58'),
+(17, 26, 'raparin-12, Beverly Hills', 902113, 7725221235, 198, '0', '0', '2023-05-14 12:36:27');
 
 -- --------------------------------------------------------
 
@@ -284,13 +289,20 @@ CREATE TABLE `tailor` (
   `Numcard` text NOT NULL,
   `Noteorder` varchar(255) NOT NULL,
   `Typestyle` varchar(255) NOT NULL,
-  `Qyasishan` double(200,1) NOT NULL,
-  `Panibal` double(200,1) NOT NULL,
-  `Qyasisng` double(200,1) NOT NULL,
-  `Drezhiqol` double(200,1) NOT NULL,
-  `Drezhibla` double(200,1) NOT NULL,
+  `Qyasishan` varchar(255) NOT NULL,
+  `Panibal` varchar(255) NOT NULL,
+  `Qyasisng` varchar(255) NOT NULL,
+  `Drezhiqol` varchar(250) NOT NULL,
+  `Drezhibla` varchar(255) NOT NULL,
   `Tailorid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tailor`
+--
+
+INSERT INTO `tailor` (`User_ID`, `Name`, `Email`, `Phone`, `City`, `Address`, `Gender`, `Numcard`, `Noteorder`, `Typestyle`, `Qyasishan`, `Panibal`, `Qyasisng`, `Drezhiqol`, `Drezhibla`, `Tailorid`) VALUES
+(29, 'mirko kawa', 'mirkokawa7@gmail.com', '+9647725221235', 'sulaymaniyah', 'raparin-12', 'Male', '', 'kjkjhk', 'Old Style', '27', '2.5', '', '2.5', '2.5', 1);
 
 -- --------------------------------------------------------
 
@@ -346,7 +358,8 @@ INSERT INTO `tailorregester` (`id`, `username`, `firstName`, `lastName`, `email`
 (1, 'tailor', 'tailor', '1', 'tailor@gmail.com', 7725221235, '12345678', '2022-10-28 16:52:33', 'https://www.facebook.com/mirko.kawa.921', 'https://www.facebook.com/mirko.kawa.921', 'kch.jpg', 'mail', 'tailor profelo to talk about her self ', 1),
 (2, 'tailor2', 'tailor', '2', 'tailor2@gmail.com', 7725221235, '$2y$10$XSMiT.ic.utGDgBl8qvMkOJRflsfYXodBwJuabYP9/h5kFjhT4py.', '2022-10-28 16:55:49', 'https://www.facebook.com/', 'https://www.instagram.com/', 'kch.jpg', 'female', 'tailor profelo to talk about her self ', 1),
 (3, 'monster', 'monster', 'keyscoor', 'mirko@gmail.com', 7725221235, '$2y$10$zin1PAqPz2GDFITbtKgeie24nUf7qMU9yUihtviwQBiIA.IoxoQJ.', '2022-11-05 22:43:49', 'https://www.facebook.com/', 'https://www.instagram.com/', 'kch.jpg', 'mail', 'tailor profelo to talk about her self ', 1),
-(44, 'tailor4', 'tailor', '4', 'tailor4@gmail.com', 7725221235, '$2y$10$XSMiT.ic.utGDgBl8qvMkOJRflsfYXodBwJuabYP9/h5kFjhT4py.', '2022-10-28 16:55:49', 'https://www.facebook.com/', 'https://www.instagram.com/', 'kch.jpg', 'female', 'tailor profelo to talk about her self ', 1);
+(44, 'tailor4', 'tailor', '4', 'tailor4@gmail.com', 7725221235, '$2y$10$XSMiT.ic.utGDgBl8qvMkOJRflsfYXodBwJuabYP9/h5kFjhT4py.', '2022-10-28 16:55:49', 'https://www.facebook.com/', 'https://www.instagram.com/', 'kch.jpg', 'female', 'tailor profelo to talk about her self ', 1),
+(45, 'user', 'mirko', 'kawa', 'mirkokawa7@gmail.com', 7725221235, '$2y$10$SMsJJ0WuRqkCQKDDwwwIP.76MlQHrZ47pYR4Hkz1zvARtSVC0yp.S', '2023-05-15 17:45:01', 'https://www.facebook.com/', 'https://www.instagram.com/', '6462456d0953a3.06897440.jpg', 'female', 'this is about ass ', 0);
 
 -- --------------------------------------------------------
 
@@ -409,7 +422,9 @@ INSERT INTO `viewcart` (`cartItemId`, `itemId`, `itemQuantity`, `userId`, `added
 (18, 63, 2, 1, '2022-09-04 14:13:50'),
 (40, 6, 1, 24, '2023-04-26 07:57:52'),
 (41, 7, 1, 24, '2023-04-26 07:57:53'),
-(45, 9, 1, 25, '2023-05-01 17:48:49');
+(45, 9, 1, 25, '2023-05-01 17:48:49'),
+(47, 5, 1, 26, '2023-05-14 11:23:35'),
+(48, 2, 1, 26, '2023-05-14 12:35:28');
 
 --
 -- Indexes for dumped tables
@@ -529,7 +544,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `contactId` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `contactId` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `contactreply`
@@ -553,13 +568,13 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `orderitems`
 --
 ALTER TABLE `orderitems`
-  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderId` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `orderId` int(21) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `sitedetail`
@@ -571,7 +586,7 @@ ALTER TABLE `sitedetail`
 -- AUTO_INCREMENT for table `tailor`
 --
 ALTER TABLE `tailor`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `tailorpost`
@@ -583,7 +598,7 @@ ALTER TABLE `tailorpost`
 -- AUTO_INCREMENT for table `tailorregester`
 --
 ALTER TABLE `tailorregester`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `totoalPrice`
@@ -601,22 +616,11 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `viewcart`
 --
 ALTER TABLE `viewcart`
-  MODIFY `cartItemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `cartItemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `contact`
---
-ALTER TABLE `contact`
-  ADD CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`),
-  ADD CONSTRAINT `contact_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `item` (`itemId`),
-  ADD CONSTRAINT `contact_ibfk_3` FOREIGN KEY (`userId`) REFERENCES `contactreply` (`id`),
-  ADD CONSTRAINT `contact_ibfk_4` FOREIGN KEY (`userId`) REFERENCES `orderitems` (`id`),
-  ADD CONSTRAINT `contact_ibfk_5` FOREIGN KEY (`contactId`) REFERENCES `item` (`itemId`),
-  ADD CONSTRAINT `contact_ibfk_6` FOREIGN KEY (`userId`) REFERENCES `orders` (`orderId`);
 
 --
 -- Constraints for table `contactreply`
@@ -671,8 +675,7 @@ ALTER TABLE `sitedetail`
 -- Constraints for table `tailor`
 --
 ALTER TABLE `tailor`
-  ADD CONSTRAINT `tailor_ibfk_1` FOREIGN KEY (`Tailorid`) REFERENCES `tailorregester` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tailor_ibfk_2` FOREIGN KEY (`User_ID`) REFERENCES `tailorpost` (`tailorId`);
+  ADD CONSTRAINT `tailor_ibfk_1` FOREIGN KEY (`Tailorid`) REFERENCES `tailorregester` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tailorpost`
@@ -686,12 +689,6 @@ ALTER TABLE `tailorpost`
 ALTER TABLE `totoalPrice`
   ADD CONSTRAINT `totoalprice_ibfk_1` FOREIGN KEY (`item`) REFERENCES `item` (`itemId`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `totoalprice_ibfk_2` FOREIGN KEY (`amount`) REFERENCES `orders` (`orderId`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `viewcart`
---
-ALTER TABLE `viewcart`
-  ADD CONSTRAINT `viewcart_ibfk_1` FOREIGN KEY (`itemId`) REFERENCES `item` (`itemId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

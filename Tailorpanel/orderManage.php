@@ -80,8 +80,7 @@
   </div>
 </div>
         <?php 
-        echo "Tailor id is hear";
-        echo $_SESSION['tailorId'];
+        // echo $_SESSION['tailorId'];
         ?>
     </div>
 </div>
