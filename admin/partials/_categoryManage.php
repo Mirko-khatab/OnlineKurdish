@@ -1,13 +1,17 @@
 <?php
     include '_dbconnect.php';
 
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
+    error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
     if(isset($_POST['createCategory'])) {
         $name = $_POST["name"];
         $desc = $_POST["desc"];
 
-        $sql = "INSERT INTO `categories` (`categorieName`, `categorieDesc`, `categorieCreateDate`) VALUES ('$name', '$desc', current_timestamp())";   
+$sql = 
+"INSERT INTO `categories` (`categorieId`, `categorieName`, `categorieDesc`, `categorieCreateDate`, `itemId`) VALUES (NULL, '$name', '$desc', current_timestamp(), '0');";
         $result = mysqli_query($conn, $sql);
         $catId = $conn->insert_id;
         if($result) {
